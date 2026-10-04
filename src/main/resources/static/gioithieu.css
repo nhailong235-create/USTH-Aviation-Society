@@ -388,3 +388,76 @@ body {
 .block2 a:hover {
     color: #F1FF57;
 }
+.hang4 {
+    display: flex;
+    flex-direction: row;
+
+    gap: 110px;
+    margin-top: 50px;
+}
+.hang4 button{
+    height: 150px;
+    width: 220px;
+    background: none;
+    border-radius: 30px;
+    border-color: aqua;
+}
+.hang4 button {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hang4 button:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+.buttonchuyenmon i {
+    display: block;
+    color: white;
+    font-size: 50px;
+    line-height: 1;
+}
+.buttonsukien i {
+    display: block;
+    color: white;
+    font-size: 50px;
+    line-height: 1;
+}
+.buttontruyenthong i {
+    display: block;
+    color: white;
+    font-size: 50px;
+    line-height: 1;
+}
+.buttonthietke i {
+    display: block;
+    color: white;
+    font-size: 50px;
+    line-height: 1;
+}
+.banchuyenmon{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.bantruyenthong{
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.bansukien{
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.banthietke{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+html, body {
+    overflow-x: hidden;
+}
