@@ -41,7 +41,11 @@ body {
 }
 
 .navbar img {
-    width: 120px;
+    width: 100px;
+    height: 60px;
+    object-fit: contain;
+    display: block;
+    flex-shrink: 0;
 }
 
 .navbar-nav {

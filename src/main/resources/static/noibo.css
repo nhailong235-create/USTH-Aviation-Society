@@ -10,8 +10,8 @@ html {
 
 body {
     font-family: "Tektur", sans-serif;
-    background-color: #020817;
-    color: #ffffff;
+    background-color: #EAF4FF;
+    color: #183153;
     min-height: 100vh;
     overflow-x: hidden;
 }
@@ -23,10 +23,11 @@ body {
     left: 0;
     width: 100%;
     height: 75px;
-    background: rgba(2, 8, 23, 0.92);
+    background: rgba(255, 255, 255, 0.96);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(241, 255, 87, 0.2);
+    border-bottom: 1px solid #C9DDF5;
+    box-shadow: 0 3px 15px rgba(36, 90, 145, 0.08);
     z-index: 9999;
     display: flex;
     justify-content: center;
@@ -62,7 +63,7 @@ body {
 }
 
 .app-nav-list li a {
-    color: #ffffff;
+    color: #183153;
     text-decoration: none;
     font-size: 13px;
     font-weight: 700;
@@ -71,7 +72,7 @@ body {
 }
 
 .app-nav-list li a:hover {
-    color: #f1ff57;
+    color: #245A91;
 }
 
 .menu-line {
@@ -85,8 +86,8 @@ body {
     right: 0;
     bottom: -6px;
     height: 2px;
-    background: #f1ff57;
-    box-shadow: 0 0 10px rgba(241, 255, 87, 0.8);
+    background: #F1C40F;
+    box-shadow: 0 0 8px rgba(241, 196, 15, 0.4);
 }
 
 /* ================= BANNER ================= */
@@ -102,6 +103,7 @@ body {
     height: 100%;
     object-fit: cover;
 }
+
 /* ================= MAIN CONTAINER ================= */
 .main-container {
     position: absolute;
@@ -118,7 +120,7 @@ body {
 }
 
 .heading-small {
-    color: #f1ff57;
+    color: #245A91;
     font-size: 12px;
     font-weight: 700;
     letter-spacing: 3px;
@@ -127,14 +129,14 @@ body {
 }
 
 .page-heading h1 {
-    color: #ffffff;
+    color: #183153;
     font-size: 36px;
     font-weight: 900;
     margin-bottom: 8px;
 }
 
 .page-heading p {
-    color: rgba(255, 255, 255, 0.65);
+    color: #60758F;
     font-size: 14px;
 }
 
@@ -146,9 +148,10 @@ body {
     gap: 16px;
     padding: 16px 22px;
     margin-bottom: 40px;
-    border: 1px solid rgba(241, 255, 87, 0.22);
+    border: 1px solid #C9DDF5;
     border-radius: 12px;
-    background: linear-gradient(135deg, rgba(9, 28, 57, 0.95), rgba(4, 16, 36, 0.95));
+    background: #FFFFFF;
+    box-shadow: 0 4px 15px rgba(36, 90, 145, 0.06);
 }
 
 .account-icon {
@@ -158,9 +161,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(241, 255, 87, 0.08);
-    border: 1px solid rgba(241, 255, 87, 0.25);
-    color: #f1ff57;
+    background: #EAF4FF;
+    border: 1px solid #C9DDF5;
+    color: #245A91;
     font-size: 20px;
 }
 
@@ -170,12 +173,12 @@ body {
 }
 
 .account-info span {
-    color: rgba(255, 255, 255, 0.5);
+    color: #708198;
     font-size: 11px;
 }
 
 .account-info strong {
-    color: #ffffff;
+    color: #183153;
     font-size: 15px;
 }
 
@@ -183,9 +186,9 @@ body {
     margin-left: auto;
     padding: 6px 14px;
     border-radius: 20px;
-    border: 1px solid rgba(241, 255, 87, 0.35);
-    background: rgba(241, 255, 87, 0.08);
-    color: #f1ff57;
+    border: 1px solid #C9DDF5;
+    background: #EAF4FF;
+    color: #245A91;
     font-size: 11px;
     font-weight: 800;
 }
@@ -196,7 +199,7 @@ body {
 }
 
 .section-heading span {
-    color: #f1ff57;
+    color: #245A91;
     font-size: 12px;
     font-weight: 700;
     letter-spacing: 2px;
@@ -204,14 +207,14 @@ body {
 }
 
 .section-heading h2 {
-    color: #ffffff;
+    color: #183153;
     font-size: 26px;
     font-weight: 800;
     margin-top: 4px;
 }
 
 .section-heading p {
-    color: rgba(255, 255, 255, 0.55);
+    color: #60758F;
     font-size: 14px;
 }
 
@@ -228,23 +231,26 @@ body {
     flex-direction: column;
     overflow: hidden;
     min-height: 380px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid #D4E3F5;
     border-radius: 14px;
-    background: linear-gradient(145deg, rgba(9, 27, 57, 0.98), rgba(3, 14, 32, 0.98));
+    background: #FFFFFF;
+    box-shadow: 0 4px 16px rgba(36, 90, 145, 0.07);
     cursor: pointer;
-    transition: transform 0.3s ease, border-color 0.3s ease;
+    transition: transform 0.3s ease, border-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .baiviet-box:hover {
     transform: translateY(-5px);
-    border-color: rgba(241, 255, 87, 0.45);
+    border-color: #7AADE0;
+    box-shadow: 0 8px 24px rgba(36, 90, 145, 0.13);
 }
 
 .baiviet-image {
     width: 100%;
     height: 180px;
     overflow: hidden;
-    background: #07152f;
+    background: #DCEBFA;
 }
 
 .baiviet-image img {
@@ -265,13 +271,13 @@ body {
     position: absolute;
     top: 16px;
     right: 16px;
-    color: rgba(241, 255, 87, 0.4);
+    color: #7896B8;
     font-size: 12px;
     font-weight: 800;
 }
 
 .internal-label {
-    color: #f1ff57;
+    color: #245A91;
     font-size: 10px;
     font-weight: 800;
     margin-bottom: 8px;
@@ -281,14 +287,14 @@ body {
 }
 
 .baiviet-title {
-    color: #ffffff;
+    color: #183153;
     font-size: 17px;
     font-weight: 800;
     margin-bottom: 8px;
 }
 
 .baiviet-description {
-    color: rgba(255, 255, 255, 0.6);
+    color: #526780;
     font-family: Arial, sans-serif;
     font-size: 13px;
     line-height: 1.5;
@@ -300,11 +306,11 @@ body {
     display: flex;
     justify-content: space-between;
     padding-top: 12px;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 1px solid #E1EAF5;
 }
 
 .baiviet-info span {
-    color: rgba(255, 255, 255, 0.5);
+    color: #708198;
     font-family: Arial, sans-serif;
     font-size: 11px;
     display: flex;
@@ -313,18 +319,20 @@ body {
 }
 
 .baiviet-info i {
-    color: #f1ff57;
+    color: #D5A900;
 }
 
 .loading-message {
     grid-column: 1 / -1;
     padding: 40px;
     text-align: center;
-    color: rgba(255, 255, 255, 0.6);
-    border: 1px dashed rgba(241, 255, 87, 0.2);
+    color: #526780;
+    border: 1px dashed #B9D2EF;
     border-radius: 12px;
+    background: #FFFFFF;
 }
 
+/* ================= FOOTER ================= */
 .footer {
     position: absolute;
     top: 2000px;
@@ -336,6 +344,7 @@ body {
     gap: 100px;
     box-sizing: border-box;
     padding-top: 40px;
+    color: #183153;
 }
 
 .footer::before {
@@ -345,7 +354,7 @@ body {
     left: -150px;
     width: 100vw;
     height: 1px;
-    background: #666667;
+    background: #D4E3F5;
 }
 
 .social-icons {
@@ -359,22 +368,22 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(241, 255, 87, 0.2);
+    border: 1px solid #C9DDF5;
     border-radius: 8px;
-    color: #ffffff;
+    color: #245A91;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .social-icons i:hover {
-    border-color: #f1ff57;
-    color: #f1ff57;
+    border-color: #245A91;
+    color: #183153;
 }
 
 .footer-bottom {
     padding: 16px;
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
-    color: rgba(255, 255, 255, 0.35);
+    border-top: 1px solid #D4E3F5;
+    color: #708198;
     font-family: Arial, sans-serif;
     font-size: 11px;
     text-align: center;
@@ -385,23 +394,107 @@ body {
     .baiviet-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+
+    .main-container {
+        left: 4%;
+        width: 92%;
+    }
+
+    .footer {
+        left: 4%;
+        width: 92%;
+        gap: 40px;
+    }
+
+    .footer::before {
+        left: -4.35%;
+        width: 108.7%;
+    }
+
+    .block3 {
+        padding-left: 0;
+    }
 }
 
 @media (max-width: 768px) {
+    .app-navbar {
+        height: auto;
+        min-height: 75px;
+    }
+
+    .nav-container {
+        width: 94%;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        padding: 10px 0;
+    }
+
+    .logo {
+        width: 75px;
+    }
+
     .app-nav-list {
-        gap: 16px;
+        gap: 12px;
+        flex-wrap: wrap;
+        justify-content: center;
     }
+
     .app-nav-list li a {
-        font-size: 11px;
+        font-size: 10px;
     }
+
+    .main-container {
+        position: relative;
+        top: auto;
+        left: auto;
+        width: 92%;
+        margin: 95px auto 0;
+        padding: 25px 0 40px;
+    }
+
+    .page-heading h1 {
+        font-size: 28px;
+    }
+
+    .section-heading h2 {
+        font-size: 22px;
+    }
+
     .baiviet-grid {
         grid-template-columns: 1fr;
     }
+
+    .footer {
+        position: relative;
+        top: auto;
+        left: auto;
+        width: 92%;
+        margin: 30px auto 0;
+        gap: 30px;
+    }
+
+    .footer::before {
+        left: -4.35%;
+        width: 108.7%;
+    }
+
     .footer-main {
         grid-template-columns: 1fr;
         gap: 24px;
     }
+
+    .block3 {
+        padding-left: 0;
+    }
+
+    .account-box {
+        padding: 14px;
+        gap: 12px;
+    }
 }
+
+/* ================= FOOTER BLOCKS ================= */
 .block1 {
     display: flex;
     flex-direction: column;
@@ -417,7 +510,7 @@ body {
 }
 
 .block2 span {
-    color: rgba(128, 128, 128, 0.868);
+    color: #60758F;
 }
 
 .block3 {
@@ -437,13 +530,13 @@ body {
 .iconlienket button {
     width: 65px;
     height: 65px;
-    border: 1px solid #273AA4;
-    background: transparent;
+    border: 1px solid #A9C6E8;
+    background: #FFFFFF;
     border-radius: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
+    color: #245A91;
     transition: all 0.3s ease;
 }
 
@@ -453,7 +546,8 @@ body {
 
 .iconlienket button:hover {
     transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 12px 30px rgba(36, 90, 145, 0.15);
+    border-color: #245A91;
 }
 
 .endd {
@@ -468,11 +562,34 @@ body {
 .lineend {
     width: 100%;
     height: 1px;
-    background-color: rgba(128, 128, 128, 0.5);
+    background-color: #D4E3F5;
     margin-bottom: 15px;
 }
 
 .endd span {
-    color: grey;
+    color: #60758F;
     text-align: left;
+}
+
+/* ================= RESPONSIVE FOOTER ================= */
+@media (max-width: 992px) {
+    .block3 {
+        padding-left: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .iconlienket button {
+        width: 52px;
+        height: 52px;
+        border-radius: 14px;
+    }
+
+    .iconlienket button i {
+        font-size: 23px;
+    }
+
+    .endd {
+        margin-top: 20px;
+    }
 }

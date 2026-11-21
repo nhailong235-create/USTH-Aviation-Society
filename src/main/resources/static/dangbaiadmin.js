@@ -59,13 +59,14 @@ let currentPreviewUrl = null;
 let currentImageUrl = null;
 
 
+
 const allowedCategories = [
-    "Hỏi đáp",
-    "Sự kiện",
-    "Thông báo",
-    "Học thuật và tài liệu",
-    "Khác"
+    "Meme",
+    "Kiến thức",
+    "Tin tức",
+    "Hoạt động CLB"
 ];
+
 
 
 document.addEventListener("DOMContentLoaded", function () {

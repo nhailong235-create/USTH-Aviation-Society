@@ -470,3 +470,6 @@ body {
 .menu-line {
     border-bottom: 1px solid white;
 }
+html, body {
+    overflow-x: hidden;
+}

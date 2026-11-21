@@ -54,7 +54,11 @@ body {
 }
 
 .navbar img {
-    width: 120px;
+    width: 100px;
+    height: 60px;
+    object-fit: contain;
+    display: block;
+    flex-shrink: 0;
 }
 
 .navbar-nav {
@@ -318,7 +322,7 @@ body {
     flex-direction: column;
     align-items: flex-start;
     gap: 30px;
-    padding-left: 150px;
+    padding-left: 60px;
 }
 
 .iconlienket {

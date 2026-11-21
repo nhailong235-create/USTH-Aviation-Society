@@ -6,31 +6,36 @@ import com.example.USTH_BE.repository.BaiDangQuanTriRepository;
 import com.example.USTH_BE.repository.UserRepository;
 import com.example.USTH_BE.util.JwtUtil;
 
-import lombok.RequiredArgsConstructor;
-
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.nio.file.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.UUID;
 
 @Service
-@RequiredArgsConstructor
 public class BaiDangQuanTriService {
 
     private final BaiDangQuanTriRepository baiDangQuanTriRepository;
-
     private final UserRepository userRepository;
-
     private final JwtUtil jwtUtil;
 
-    private final Path pdfDirectory =
-            Paths.get("uploads/pdf");
+    private final Path pdfDirectory = Paths.get("uploads/pdf");
+    private final Path imageDirectory = Paths.get("uploads/images");
 
-    private final Path imageDirectory =
-            Paths.get("uploads/images");
+    public BaiDangQuanTriService(
+            BaiDangQuanTriRepository baiDangQuanTriRepository,
+            UserRepository userRepository,
+            JwtUtil jwtUtil
+    ) {
+        this.baiDangQuanTriRepository = baiDangQuanTriRepository;
+        this.userRepository = userRepository;
+        this.jwtUtil = jwtUtil;
+    }
 
     public BaiDangQuanTri dangBai(
             String token,
@@ -41,8 +46,7 @@ public class BaiDangQuanTriService {
             MultipartFile image
     ) throws IOException {
 
-        Long userId =
-                jwtUtil.extractUserId(token);
+        Long userId = jwtUtil.extractUserId(token);
 
         if (userId == null) {
             throw new RuntimeException(
@@ -50,103 +54,78 @@ public class BaiDangQuanTriService {
             );
         }
 
-        User user =
-                userRepository.findById(userId)
-                        .orElseThrow(() ->
-                                new RuntimeException(
-                                        "Không tìm thấy người dùng."
-                                )
-                        );
+        User user = userRepository.findById(userId)
+                .orElseThrow(() ->
+                        new RuntimeException(
+                                "Không tìm thấy người dùng."
+                        )
+                );
 
-        if (tieuDe == null ||
-                tieuDe.trim().isEmpty()) {
-
+        if (tieuDe == null || tieuDe.trim().isEmpty()) {
             throw new RuntimeException(
                     "Tiêu đề không được để trống."
             );
         }
 
-        if (noiDung == null ||
-                noiDung.trim().isEmpty()) {
-
+        if (noiDung == null || noiDung.trim().isEmpty()) {
             throw new RuntimeException(
                     "Nội dung không được để trống."
             );
         }
 
-        if (theLoai == null ||
-                theLoai.trim().isEmpty()) {
-
+        if (theLoai == null || theLoai.trim().isEmpty()) {
             throw new RuntimeException(
                     "Vui lòng chọn thể loại."
             );
         }
 
-        if (pdf == null ||
-                pdf.isEmpty()) {
-
+        if (pdf == null || pdf.isEmpty()) {
             throw new RuntimeException(
                     "Vui lòng upload file PDF."
             );
         }
 
         if (!isAllowedCategory(theLoai)) {
-
             throw new RuntimeException(
                     "Thể loại không hợp lệ."
             );
         }
 
         if (!isPdf(pdf)) {
-
             throw new RuntimeException(
                     "File phải là PDF."
             );
         }
 
-        if (pdf.getSize() >
-                50L * 1024 * 1024) {
-
+        if (pdf.getSize() > 50L * 1024 * 1024) {
             throw new RuntimeException(
                     "File PDF không được vượt quá 50MB."
             );
         }
 
-        if (image != null &&
-                !image.isEmpty()) {
+        if (image != null && !image.isEmpty()) {
 
             if (!isImage(image)) {
-
                 throw new RuntimeException(
                         "Ảnh minh họa không hợp lệ."
                 );
             }
 
-            if (image.getSize() >
-                    5L * 1024 * 1024) {
-
+            if (image.getSize() > 5L * 1024 * 1024) {
                 throw new RuntimeException(
                         "Ảnh minh họa không được vượt quá 5MB."
                 );
             }
         }
 
-        Files.createDirectories(
-                pdfDirectory
-        );
-
-        Files.createDirectories(
-                imageDirectory
-        );
+        Files.createDirectories(pdfDirectory);
+        Files.createDirectories(imageDirectory);
 
         String pdfFileName =
-                UUID.randomUUID()
-                        + ".pdf";
+                UUID.randomUUID() + ".pdf";
 
         Path pdfPath =
-                pdfDirectory.resolve(
-                        pdfFileName
-                );
+                pdfDirectory.resolve(pdfFileName);
 
         Files.copy(
                 pdf.getInputStream(),
@@ -155,25 +134,20 @@ public class BaiDangQuanTriService {
         );
 
         String pdfUrl =
-                "/uploads/pdf/" +
-                        pdfFileName;
+                "/uploads/pdf/" + pdfFileName;
 
         String imageUrl = null;
 
-        if (image != null &&
-                !image.isEmpty()) {
+        if (image != null && !image.isEmpty()) {
 
             String extension =
                     getImageExtension(image);
 
             String imageFileName =
-                    UUID.randomUUID()
-                            + extension;
+                    UUID.randomUUID() + extension;
 
             Path imagePath =
-                    imageDirectory.resolve(
-                            imageFileName
-                    );
+                    imageDirectory.resolve(imageFileName);
 
             Files.copy(
                     image.getInputStream(),
@@ -182,55 +156,44 @@ public class BaiDangQuanTriService {
             );
 
             imageUrl =
-                    "/uploads/images/" +
-                            imageFileName;
+                    "/uploads/images/" + imageFileName;
         }
 
         BaiDangQuanTri baiDang =
                 new BaiDangQuanTri();
 
-        baiDang.setTieuDe(
-                tieuDe.trim()
-        );
+        baiDang.setTieuDe(tieuDe.trim());
 
-        baiDang.setNoiDung(
-                noiDung.trim()
-        );
+        baiDang.setNoiDung(noiDung.trim());
 
-        baiDang.setTheLoai(
-                theLoai.trim()
-        );
+        baiDang.setTheLoai(theLoai.trim());
 
-        baiDang.setFilePdf(
-                pdfUrl
-        );
+        baiDang.setFilePdf(pdfUrl);
 
-        baiDang.setAnhMinhHoa(
-                imageUrl
-        );
+        baiDang.setAnhMinhHoa(imageUrl);
 
-        baiDang.setUser(
-                user
-        );
+        baiDang.setUser(user);
 
-        return baiDangQuanTriRepository.save(
-                baiDang
+        return baiDangQuanTriRepository.save(baiDang);
+    }
+
+    private boolean isAllowedCategory(String theLoai) {
+
+        if (theLoai == null || theLoai.isBlank()) {
+            return false;
+        }
+
+        return List.of(
+                "Meme",
+                "Kiến thức",
+                "Tin tức",
+                "Hoạt động CLB"
+        ).stream().anyMatch(category ->
+                category.equalsIgnoreCase(theLoai.trim())
         );
     }
 
-    private boolean isAllowedCategory(
-            String theLoai
-    ) {
-
-        return theLoai.equals("Meme")
-                || theLoai.equals("Kiến thức")
-                || theLoai.equals("Tin tức")
-                || theLoai.equals("Hoạt động CLB");
-    }
-
-    private boolean isPdf(
-            MultipartFile file
-    ) {
+    private boolean isPdf(MultipartFile file) {
 
         String contentType =
                 file.getContentType();
@@ -242,19 +205,17 @@ public class BaiDangQuanTriService {
                 "application/pdf".equalsIgnoreCase(
                         contentType
                 )
-                        ||
-                        (
-                                fileName != null
-                                        &&
-                                        fileName
-                                                .toLowerCase()
-                                                .endsWith(".pdf")
-                        );
+                ||
+                (
+                        fileName != null
+                        &&
+                        fileName
+                                .toLowerCase()
+                                .endsWith(".pdf")
+                );
     }
 
-    private boolean isImage(
-            MultipartFile file
-    ) {
+    private boolean isImage(MultipartFile file) {
 
         String contentType =
                 file.getContentType();
@@ -263,14 +224,14 @@ public class BaiDangQuanTriService {
                 "image/jpeg".equalsIgnoreCase(
                         contentType
                 )
-                        ||
-                        "image/png".equalsIgnoreCase(
-                                contentType
-                        )
-                        ||
-                        "image/webp".equalsIgnoreCase(
-                                contentType
-                        );
+                ||
+                "image/png".equalsIgnoreCase(
+                        contentType
+                )
+                ||
+                "image/webp".equalsIgnoreCase(
+                        contentType
+                );
     }
 
     private String getImageExtension(
@@ -283,14 +244,12 @@ public class BaiDangQuanTriService {
         if ("image/png".equalsIgnoreCase(
                 contentType
         )) {
-
             return ".png";
         }
 
         if ("image/webp".equalsIgnoreCase(
                 contentType
         )) {
-
             return ".webp";
         }
 
@@ -311,9 +270,7 @@ public class BaiDangQuanTriService {
                 .findByTheLoai(theLoai);
     }
 
-    public BaiDangQuanTri getById(
-            Long id
-    ) {
+    public BaiDangQuanTri getById(Long id) {
 
         return baiDangQuanTriRepository
                 .findById(id)
@@ -335,8 +292,6 @@ public class BaiDangQuanTriService {
                                 )
                         );
 
-        baiDangQuanTriRepository.delete(
-                baiDang
-        );
+        baiDangQuanTriRepository.delete(baiDang);
     }
 }

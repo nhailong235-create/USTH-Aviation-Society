@@ -240,3 +240,6 @@ body{
 .block2 a:hover {
     color: #F1FF57;
 }
+html, body {
+    overflow-x: hidden;
+}
