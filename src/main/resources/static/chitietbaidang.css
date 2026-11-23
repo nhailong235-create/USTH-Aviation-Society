@@ -4,23 +4,16 @@
 
 html {
     min-height: 100%;
-    background:
-        radial-gradient(
-            circle at 20% 20%,
-            rgba(39, 58, 164, 0.35),
-            transparent 35%
-        ),
-        radial-gradient(
-            circle at 80% 30%,
-            rgba(0, 100, 255, 0.2),
-            transparent 35%
-        ),
-        #07152f;
+    overflow-x: hidden;
+    background: #07152f;
 }
 
 body {
+    display: flex;
+    flex-direction: column;
     min-height: 100vh;
     margin: 0;
+    overflow-x: hidden;
     font-family: "Tektur", sans-serif;
     background:
         radial-gradient(
@@ -34,40 +27,60 @@ body {
             transparent 35%
         ),
         #07152f;
-    color: white;
+    color: #ffffff;
 }
 
 .navbar {
     position: fixed;
     top: 0;
-    left: 5px;
-    width: 99.4%;
-    height: 80px;
-    z-index: 10;
+    left: 0;
+    width: 100%;
+    height: 76px;
+    z-index: 50;
     display: flex;
     align-items: center;
-    overflow: hidden;
-    padding: 15px 60px;
-    background: rgba(0, 15, 40, 0.55);
-    backdrop-filter: blur(10px);
+    justify-content: space-between;
+    padding: 12px 50px;
+    background: rgba(0, 15, 40, 0.82);
+    backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
+.navbar-brand-link {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
 .navbar img {
-    width: 100px;
-    height: 60px;
+    width: 88px;
+    height: 52px;
     object-fit: contain;
     display: block;
+}
+
+.menu-toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border: 1px solid rgba(245, 213, 71, 0.65);
+    border-radius: 10px;
+    background: rgba(11, 31, 77, 0.9);
+    color: #f5d547;
+    font-size: 24px;
+    cursor: pointer;
     flex-shrink: 0;
 }
 
 .navbar-nav {
     display: flex;
     flex-direction: row;
-    gap: 40px;
+    align-items: center;
+    gap: 28px;
     list-style: none;
-    margin-left: auto;
-    margin-bottom: 0;
+    margin: 0 0 0 auto;
     padding: 0;
 }
 
@@ -77,116 +90,137 @@ body {
 }
 
 .navbar-nav li a {
-    color: white !important;
+    color: #ffffff !important;
     text-decoration: none;
-    transition: 0.3s;
+    font-size: 14.5px;
+    white-space: nowrap;
+    transition: color 0.25s ease;
 }
 
-.navbar-nav li a:hover {
+.navbar-nav li a:hover,
+.navbar-nav li.menu-line a {
     color: #f5d547 !important;
+}
+
+.navbar-nav li.menu-line a {
+    border-bottom: 2px solid #f5d547;
+    padding-bottom: 4px;
 }
 
 #authArea {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: 10px;
 }
 
-.btnlogout {
-    border: 2px solid #f5d547;
-    padding: 10px 18px;
+.auth-username {
+    color: #f5d547;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btnlogout,
+.btnlogin {
+    border: 1.5px solid #f5d547;
+    padding: 8px 15px;
     border-radius: 7px;
-    background: #0b1f4d;
-    color: white !important;
+    font-family: "Tektur", sans-serif;
+    font-size: 13.5px;
+    font-weight: 700;
     cursor: pointer;
-    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    transition: all 0.25s ease;
+    white-space: nowrap;
 }
 
-.btnlogout i {
-    color: white !important;
-}
-
-.btnlogout:hover {
-    background: #f5d547;
-    color: #07152f !important;
-}
-
-.btnlogout:hover i {
-    color: #07152f !important;
+.btnlogout {
+    background: #0b1f4d;
+    color: #ffffff !important;
 }
 
 .btnlogin {
-    border: 2px solid #f5d547;
-    padding: 10px 18px;
-    border-radius: 7px;
     background: transparent;
-    color: white !important;
-    cursor: pointer;
-    font-weight: bold;
+    color: #ffffff !important;
 }
 
+.btnlogout i,
+.btnlogin i {
+    color: inherit !important;
+}
+
+.btnlogout:hover,
 .btnlogin:hover {
     background: #f5d547;
     color: #07152f !important;
 }
 
 .line {
-    position: absolute;
-    top: 80px;
+    position: fixed;
+    top: 76px;
     left: 0;
     width: 100%;
     height: 2px;
-    background: yellow;
-    z-index: 5;
+    background: #f5d547;
+    z-index: 40;
+    pointer-events: none;
 }
 
 .line::before {
     content: "";
     position: absolute;
     left: 0;
-    bottom: 0;
+    top: 2px;
     width: 100%;
-    height: 80px;
+    height: 48px;
     background: linear-gradient(
-        to top,
-        rgba(255, 215, 0, 0.18),
-        rgba(255, 215, 0, 0)
+        to bottom,
+        rgba(245, 213, 71, 0.14),
+        rgba(245, 213, 71, 0)
     );
     pointer-events: none;
 }
 
 .chitiet-container {
     position: relative;
-    width: 1100px;
+    width: min(1060px, calc(100% - 48px));
     margin: 0 auto;
-    padding-top: 125px;
+    padding: 112px 0 64px;
+    flex: 1;
 }
 
 .back-area {
-    margin-bottom: 25px;
+    margin-bottom: 22px;
 }
 
 .back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     background: transparent;
-    color: white;
+    color: #ffffff;
     border: 2px solid #f5d547;
     border-radius: 10px;
     padding: 10px 20px;
     font-family: "Tektur", sans-serif;
+    font-size: 14px;
     font-weight: 600;
     cursor: pointer;
-    transition: 0.3s;
+    transition: all 0.25s ease;
 }
 
 .back-button i {
     color: #f5d547;
-    margin-right: 8px;
 }
 
 .back-button:hover {
     background: #f5d547;
     color: #07152f;
-    transform: translateX(-5px);
+    transform: translateX(-4px);
 }
 
 .back-button:hover i {
@@ -197,18 +231,19 @@ body {
     width: 100%;
     background: #0b1f4d;
     border: 2px solid #f5d547;
-    border-radius: 15px;
+    border-radius: 16px;
     overflow: hidden;
     box-shadow:
-        0 10px 30px rgba(0, 0, 0, 0.3),
-        0 0 20px rgba(245, 213, 71, 0.08);
+        0 12px 32px rgba(0, 0, 0, 0.35),
+        0 0 22px rgba(245, 213, 71, 0.08);
 }
 
 .baidang-image-container {
     width: 100%;
-    height: 520px;
+    aspect-ratio: 16 / 9;
+    max-height: 500px;
     overflow: hidden;
-    background: #07152f;
+    background: #040d21;
 }
 
 .baidang-image-container img {
@@ -219,138 +254,161 @@ body {
 }
 
 .baidang-content {
-    padding: 40px 55px 55px;
+    padding: 38px 50px 48px;
 }
 
 .baidang-category {
     display: inline-block;
     color: #07152f;
     background: #f5d547;
-    padding: 7px 16px;
-    border-radius: 20px;
-    font-size: 13px;
+    padding: 6px 15px;
+    border-radius: 999px;
+    font-size: 12.5px;
     font-weight: 800;
-    letter-spacing: 1px;
-    margin-bottom: 18px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
 }
 
 .baidang-content h1 {
-    color: white;
-    font-size: 38px;
+    color: #ffffff;
+    font-size: clamp(22px, 3.2vw, 38px);
     line-height: 1.3;
     font-weight: 800;
-    margin: 0 0 20px;
+    margin: 0 0 18px;
+    overflow-wrap: anywhere;
 }
 
 .baidang-meta {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 30px;
-    color: #aaa;
+    gap: 12px 28px;
+    color: #b8c2d3;
     font-size: 14px;
 }
 
-.baidang-meta span {
-    display: flex;
+.baidang-meta > span {
+    display: inline-flex;
     align-items: center;
     gap: 7px;
 }
 
 .baidang-meta i {
     color: #f5d547;
-    font-size: 17px;
+    font-size: 16px;
 }
 
 .baidang-divider {
     width: 100%;
     height: 1px;
     background: rgba(245, 213, 71, 0.3);
-    margin: 30px 0;
+    margin: 26px 0;
 }
 
 .baidang-text {
-    color: #e6e6e6;
+    color: #e6ebf5;
     font-family: Arial, sans-serif;
     font-size: 17px;
-    line-height: 1.9;
+    line-height: 1.85;
     white-space: pre-wrap;
-    word-break: break-word;
+    overflow-wrap: anywhere;
 }
 
 .footer {
-    position: absolute;
-    top: 1100px;
-    left: 150px;
-    width: calc(100% - 300px);
+    position: relative;
+    width: min(1060px, calc(100% - 48px));
+    margin: 0 auto 40px;
+    padding-top: 40px;
+    border-top: 1px solid #666667;
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
     align-items: flex-start;
-    gap: 100px;
-    box-sizing: border-box;
-    padding-top: 40px;
+    gap: 40px;
 }
 
-.footer::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -150px;
-    width: 100vw;
-    height: 1px;
-    background: #666667;
-}
 .block1 {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 5px;
+    gap: 8px;
+    max-width: 340px;
+}
+
+.footer-sub {
+    color: #9ca3af;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.footer-email {
+    margin-top: 16px;
+    color: #9ca3af;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .block2 {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 20px;
+    gap: 14px;
 }
 
-.block2 span {
-    color: rgba(128, 128, 128, 0.868);
+.block2 a {
+    color: rgba(200, 205, 215, 0.82);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s ease;
+}
+
+.block2 a:hover {
+    color: #f5d547;
 }
 
 .block3 {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 30px;
-    padding-left: 60px;
+    gap: 20px;
 }
 
 .iconlienket {
     display: flex;
     flex-direction: row;
-    gap: 15px;
+    flex-wrap: wrap;
+    gap: 14px;
 }
 
+.iconlienket .social-btn,
 .iconlienket button {
-    width: 65px;
-    height: 65px;
-    border: 1px solid #273AA4;
+    width: 58px;
+    height: 58px;
+    border: 1px solid #273aa4;
     background: transparent;
-    border-radius: 20px;
-    display: flex;
+    border-radius: 16px;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    color: white;
-    transition: all 0.3s ease;
+    color: #ffffff;
+    text-decoration: none;
+    transition: all 0.25s ease;
 }
 
+.iconlienket .social-btn i,
 .iconlienket button i {
-    font-size: 28px;
+    font-size: 24px;
 }
 
+.iconlienket .social-btn:hover,
 .iconlienket button:hover {
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    transform: translateY(-4px);
+    border-color: #f5d547;
+    color: #f5d547;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
 }
 
 .endd {
@@ -359,104 +417,185 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-top: 30px;
+    margin-top: 12px;
 }
 
 .lineend {
     width: 100%;
     height: 1px;
-    background-color: rgba(128, 128, 128, 0.5);
-    margin-bottom: 15px;
+    background-color: rgba(128, 128, 128, 0.45);
+    margin-bottom: 14px;
 }
 
 .endd span {
-    color: grey;
-    text-align: left;
+    color: #9ca3af;
+    font-size: 13px;
 }
 
-@media (max-width: 1200px) {
-
-    .chitiet-container {
-        width: 90%;
-    }
-
-    .footer {
-        width: 90%;
-        gap: 60px;
-    }
-
+@media (max-width: 1120px) {
     .navbar {
-        padding: 15px 30px;
+        padding: 12px 24px;
     }
 
     .navbar-nav {
-        gap: 20px;
+        gap: 18px;
     }
 
+    .navbar-nav li a {
+        font-size: 13.5px;
+    }
 }
 
-@media (max-width: 768px) {
-
+@media (max-width: 900px) {
     .navbar {
-        height: 70px;
-        padding: 10px 20px;
+        height: 68px;
+        padding: 10px 18px;
     }
 
     .navbar img {
-        width: 90px;
+        width: 72px;
+        height: 44px;
+    }
+
+    .line {
+        top: 68px;
+    }
+
+    .menu-toggle {
+        display: inline-flex;
     }
 
     .navbar-nav {
-        gap: 10px;
-        font-size: 11px;
+        display: none;
+        position: fixed;
+        top: 68px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+        padding: 18px 20px 22px;
+        margin: 0;
+        background: rgba(4, 13, 33, 0.98);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(245, 213, 71, 0.35);
+        z-index: 49;
+    }
+
+    .navbar-nav.active {
+        display: flex;
+    }
+
+    .navbar-nav li {
+        width: 100%;
+    }
+
+    .navbar-nav li a {
+        display: inline-block;
+        font-size: 15px;
+        padding: 4px 0;
+    }
+
+    #authArea {
+        padding-top: 8px;
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+        width: 100%;
+        justify-content: space-between;
     }
 
     .chitiet-container {
-        width: 94%;
-        padding-top: 105px;
+        width: calc(100% - 28px);
+        padding: 92px 0 48px;
     }
 
     .baidang-image-container {
-        height: 300px;
+        aspect-ratio: 16 / 10;
+        max-height: 360px;
     }
 
     .baidang-content {
-        padding: 25px;
-    }
-
-    .baidang-content h1 {
-        font-size: 27px;
+        padding: 26px 22px 32px;
     }
 
     .baidang-meta {
         flex-direction: column;
         align-items: flex-start;
-        gap: 10px;
+        gap: 8px;
+        font-size: 13.5px;
+    }
+
+    .baidang-divider {
+        margin: 20px 0;
     }
 
     .baidang-text {
-        font-size: 15px;
+        font-size: 15.5px;
+        line-height: 1.75;
     }
 
     .footer {
-        width: 94%;
-        margin: 40px auto 0;
-        padding: 30px 0;
+        width: calc(100% - 28px);
         flex-direction: column;
-        gap: 40px;
+        gap: 28px;
+        padding-top: 30px;
+        margin-bottom: 30px;
     }
 
-    .block1,
-    .block2,
-    .block3 {
-        width: 100%;
+    .iconlienket .social-btn,
+    .iconlienket button {
+        width: 50px;
+        height: 50px;
+        border-radius: 14px;
     }
 
-    .endd {
-        width: 100%;
+    .iconlienket .social-btn i,
+    .iconlienket button i {
+        font-size: 21px;
     }
-
 }
-html, body {
-    overflow-x: hidden;
+
+@media (max-width: 480px) {
+    .chitiet-container {
+        width: calc(100% - 20px);
+        padding: 86px 0 40px;
+    }
+
+    .back-button {
+        padding: 8px 15px;
+        font-size: 13px;
+    }
+
+    .baidang-detail {
+        border-radius: 12px;
+        border-width: 1.5px;
+    }
+
+    .baidang-image-container {
+        aspect-ratio: 16 / 11;
+        max-height: 240px;
+    }
+
+    .baidang-content {
+        padding: 20px 16px 24px;
+    }
+
+    .baidang-category {
+        font-size: 11.5px;
+        padding: 5px 12px;
+        margin-bottom: 12px;
+    }
+
+    .baidang-content h1 {
+        font-size: 21px;
+        margin-bottom: 14px;
+    }
+
+    .baidang-text {
+        font-size: 14.5px;
+        line-height: 1.7;
+    }
+
+    .footer {
+        width: calc(100% - 20px);
+    }
 }

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Tất Cả Bài Viết</title>
+    <title>Tất Cả Bài Viết - USTH Aviation Society</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -20,13 +20,19 @@
 
 <body>
 
-<div class="navbar">
+<nav class="navbar">
 
-    <img src="logo.png" alt="">
+    <a href="home.html" class="navbar-brand-link">
+        <img src="logo.png" alt="USTH Aviation Society">
+    </a>
 
-    <ul class="navbar-nav">
+    <button class="menu-toggle" id="menuToggle" type="button" aria-label="Mở menu điều hướng" aria-expanded="false">
+        <i class="bi bi-list"></i>
+    </button>
 
-        <li class="menu-line">
+    <ul class="navbar-nav" id="navbarNav">
+
+        <li>
             <a href="home.html">TRANG CHỦ</a>
         </li>
 
@@ -42,25 +48,30 @@
             <a href="gopy.html">GÓP Ý</a>
         </li>
 
-        <li>
+        <li class="menu-line">
             <a href="diendanuas.html">DIỄN ĐÀN UAS</a>
         </li>
 
     </ul>
 
-</div>
+</nav>
 
 
-<div class="banner">
+<div class="banner" aria-hidden="true">
 
     <img src="images/diendan.png" alt="">
 
 </div>
 
 
-<div class="baiviet-container">
+<main class="baiviet-container">
 
     <div class="baiviet-heading">
+
+        <a href="diendanuas.html" class="back-forum-link">
+            <i class="bi bi-arrow-left"></i>
+            QUAY LẠI DIỄN ĐÀN
+        </a>
 
         <span>CỘNG ĐỒNG UAS</span>
 
@@ -72,6 +83,22 @@
             Tổng hợp tất cả bài viết từ cộng đồng USTH Aviation Society.
         </p>
 
+        <form id="pageSearchForm" class="page-search-form" action="tatcabaiviet.html" method="GET">
+            <div class="page-search-input-wrap">
+                <i class="bi bi-search page-search-icon"></i>
+                <input
+                    type="text"
+                    id="searchInput"
+                    name="noidung"
+                    placeholder="Tìm theo tiêu đề, nội dung, thể loại hoặc tác giả..."
+                    autocomplete="off">
+                <button type="button" id="clearSearchBtn" class="clear-search-btn" aria-label="Xóa từ khóa" hidden>
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+            <button type="submit" class="page-search-btn">TÌM KIẾM</button>
+        </form>
+
     </div>
 
 
@@ -80,27 +107,23 @@
 
     <div class="pagination" id="pagination"></div>
 
-</div>
+</main>
 
 
-<div class="footer">
+<footer class="footer">
 
     <div class="block1">
 
-        <span class="text-white">
+        <span class="text-white fw-semibold">
             USTH AVIATION SOCIETY
         </span>
 
-        <span style="color: gray;">
-            CLB HÀNG KHÔNG - TRƯỜNG ĐẠI HỌC KHOA HỌC VÀ CÔNG
+        <span class="footer-sub">
+            CLB HÀNG KHÔNG - TRƯỜNG ĐẠI HỌC KHOA HỌC VÀ CÔNG NGHỆ HÀ NỘI
         </span>
 
-        <span style="color: grey;">
-            NGHỆ HÀ NỘI
-        </span>
-
-        <span style="margin-top: 30px; color: gray;">
-            📧 uas.club@usth.edu.vn
+        <span class="footer-email">
+            <i class="bi bi-envelope"></i> uas.club@usth.edu.vn
         </span>
 
     </div>
@@ -108,56 +131,42 @@
 
     <div class="block2">
 
-        <span class="text-white">
+        <span class="text-white fw-semibold">
             Liên Kết
         </span>
 
-        <span>
-            Trang chủ
-        </span>
-
-        <span>
-            Giới Thiệu Clb
-        </span>
-
-        <span>
-            Hoạt Động
-        </span>
-
-        <span>
-            Góp Ý
-        </span>
-
-        <span>
-            Diễn Đàn UAS
-        </span>
+        <a href="home.html">Trang chủ</a>
+        <a href="introduce.html">Giới Thiệu CLB</a>
+        <a href="hoatdong.html">Hoạt Động</a>
+        <a href="gopy.html">Góp Ý</a>
+        <a href="diendanuas.html">Diễn Đàn UAS</a>
 
     </div>
 
 
     <div class="block3">
 
-        <span class="text-white">
+        <span class="text-white fw-semibold">
             KÊNH THÔNG TIN CHÍNH THỨC
         </span>
 
         <div class="iconlienket">
 
-            <button class="fb" type="button">
+            <a class="fb social-btn" href="https://www.facebook.com/share/1Luq66vwUk/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                 <i class="bi bi-facebook"></i>
-            </button>
+            </a>
 
-            <button class="ig" type="button">
+            <a class="ig social-btn" href="https://www.instagram.com/uas_3726?igsh=MW9hZmtqbDByZDZveg==" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                 <i class="bi bi-instagram"></i>
-            </button>
+            </a>
 
-            <button class="tiktok" type="button">
+            <a class="tiktok social-btn" href="https://www.tiktok.com/@usth.aviation.soc?_r=1&_t=ZS-990xpKoC1lk" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
                 <i class="bi bi-tiktok"></i>
-            </button>
+            </a>
 
-            <button class="thread" type="button">
+            <a class="thread social-btn" href="https://www.threads.com/@uas_3726" target="_blank" rel="noopener noreferrer" aria-label="Threads">
                 <i class="bi bi-threads"></i>
-            </button>
+            </a>
 
         </div>
 
@@ -174,7 +183,7 @@
 
     </div>
 
-</div>
+</footer>
 
 
 <script src="tatcabaiviet.js"></script>
